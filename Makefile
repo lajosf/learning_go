@@ -1,17 +1,22 @@
 .DEFAULT_GOAL := build
 
 fmt:
-	go fmt ./...
+	go fmt ./src/...
+
 .PHONY: fmt
 
 lint: fmt
-	golint ./...
-.PHONY:lint
+	golint ./src/...
+
+.PHONY: lint
 
 vet: fmt
-	go vet ./...
-.PHONY:vet
+	go vet ./src/...
+	shadow ./...
+
+.PHONY: vet
 
 build: vet
-	go build hello.go
-.PHONY:build
+	go build ./src/ch1/hello.go
+
+.PHONY: build
